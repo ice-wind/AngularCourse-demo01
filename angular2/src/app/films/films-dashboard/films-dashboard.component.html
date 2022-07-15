@@ -1,0 +1,22 @@
+
+<div *ngFor="let film of films">
+    <!-- {{film.film|uppercase}} - {{film.description}} -->
+    <app-film-card filmName="ahoj">
+        {{film.film|uppercase}} - {{film.description}} - {{film.favorite|iconize}}
+        <div *ngIf="film.favorite">
+            <mat-icon>favorite</mat-icon>
+        </div>
+        - <mat-icon>{{film.favorite|iconize}}</mat-icon>
+        <button [routerLink]="['detail',film.id]">detail</button>
+    </app-film-card>
+</div>
+<br>
+<br>
+<button (click)="increment()"> hit me!</button>
+<!-- <div>
+    {{films|json}}
+</div> -->
+
+<!-- <div>{{mockData1}}</div>
+-
+<div>{{mockData2}}</div> -->

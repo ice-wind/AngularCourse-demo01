@@ -1,0 +1,27 @@
+<p>reactive-signup-form works!</p>
+
+<form novalidate [formGroup]="user" id="signUpForm">
+    
+        <label >
+            <span>Name</span> 
+            <input formControlName="name" type="text"  placeholder="Your name">
+        </label>
+        <div class="error" *ngIf="name?.touched && name.hasError('required') && !submited">Toto pole je povinne</div>
+            
+        <div formGroupName="account">
+            <label for="">
+                <span>Email</span> 
+                <input formControlName="email" type="text" placeholder="Your email">
+            </label>
+            <div class="error" *ngIf=" account.get('email')?.hasError('isNotUnique')">Email je v zlom formate</div>
+            <div class="error" *ngIf=" account.get('email')?.hasError('isnotUniqueAsync')">Email je v zlom formate ASYNC</div>
+
+            <label for="">
+                <span>Confirm email</span> 
+                <input formControlName="confirm" type="text" placeholder="Your email again">
+            </label>
+        </div>
+        
+    </form>
+
+    <button form="signUpForm" (click)="onSubmit()" >Sign up</button>

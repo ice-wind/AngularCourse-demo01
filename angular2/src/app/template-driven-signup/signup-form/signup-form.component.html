@@ -1,0 +1,36 @@
+<p>signup-form works!</p>
+<form novalidate #f="ngForm" id="signUpForm">
+
+<div *ngFor="let item of countArray">
+    <label for="">
+        <span>Name</span> 
+        <input type="text" name="name" [(ngModel)]="user.name" placeholder="Your name" #userName="ngModel" required minlength="3" (ngModelChange)="validateWords($event)">
+    </label>
+    <div *ngIf="userName.errors?.required && (userName.touched||f.submitted)" class="alert">Name is required</div>
+    <div *ngIf="userName.errors?.minlength && (userName.touched||f.submitted)" class="alert">Name min length is 3</div>
+    <div *ngIf="userName.errors?.blackListed && (userName.touched||f.submitted)" class="alert">Name canot be test</div>
+
+    <div ngModelGroup = "account">
+        <label for="">
+            <span>Email</span> 
+            <input type="text" name="email" [(ngModel)]="user.account.email" placeholder="Your email">
+        </label>
+
+        <label for="">
+            <span>Confirm email</span> 
+            <input type="text" name="confirm" [(ngModel)]="user.account.confirm" placeholder="Your email again">
+        </label>
+    </div>
+
+    <label for="">
+        <span>Password</span> 
+        <input type="text" name="password" [(ngModel)]="user.password" placeholder="Your password" #userPass="ngModel" required minlength="3" appPassword (ngModelChange)="validateWords($event)">
+    </label>
+    <div *ngIf="userPass.errors?.passwordError && (userPass.touched||f.submitted)" class="error">Password error</div>
+</div>
+    <button form="signUpForm" (click)="onSubmit(f)" >Sign up</button>
+</form>
+
+
+<hr>
+<div>{{user|json}}</div>

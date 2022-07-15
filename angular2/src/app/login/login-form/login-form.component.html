@@ -1,0 +1,19 @@
+<form class="example-form" novalidate  id="loginForm" #f="ngForm">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Favorite food</mat-label>
+    <input type="text" required name="username" [ngModel]="loginForm.username" #usernameCrl="ngModel" matInput placeholder="zadaj meno" >
+    <mat-icon matSuffix>admin_panel_settings</mat-icon>
+    <mat-error *ngIf="usernameCrl.hasError('required')">pozadovane</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Leave a comment</mat-label>
+    <input type="password" required name="password" [ngModel]="loginForm.password" #passwordCrl="ngModel" matInput placeholder="Zadaj heslo">
+    <mat-icon matSuffix>lock_open</mat-icon>
+    <mat-error *ngIf="passwordCrl.hasError('required')">pozadovane</mat-error>
+  </mat-form-field>
+</form>
+<button form="loginForm" (click)="login(f)" >LogIn</button>
+
+
+<div>{{responseObj|json}}</div>
